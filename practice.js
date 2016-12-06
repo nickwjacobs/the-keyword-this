@@ -2,18 +2,26 @@
   // 1) What is the purpose of the 'this keyword'?
 
       //Answer
+      //To link a property to the function and or object that it is in.
 
   // 2) What are the four rules that govern what the 'this keyword' is bound to and describe each?
 
       //Answer
+      //explicit uses: .apply, .call, .bind.
+      //implicit
+      //default: Will apply it to the root element or the window.
+      //new
 
   // 3) What is the difference between call and apply?
 
       //Answer
+      //apply
+      //call They do about the same thing excetp the apply method will wrap the params in an array.
 
   // 4) What does .bind do?
 
       //Answer
+      //binds it explicityly to that function
 
 
 //Next Problem
@@ -24,6 +32,13 @@
   //getUsername --> which is a function that returns the current object's username property. *Don't use 'user' instead use the 'this' keyword*
 
     //Code Here
+    var user = {
+      username: "nick",
+      email: "someone@email.com",
+      getUsername: function(){
+        return this.username;
+      }
+    };
 
 //Now, invoke the getUsername method and verify you got the username of the object and not anything else.
 
@@ -34,7 +49,17 @@
 // Write the function definitions which will make the following function invocations function properly.
 
   //Function Invocations Here
+var Car = function(make, model, year){
+  this.move = 0;
+  this.moveCar = function(){
+    this.move += 10;
+    return this.move;
+    };
+  this.make = make;
+  this.model = model;
+  this.year = year;
 
+};
 var prius = new Car('Toyota', 'Prius', 2011);
 var mustang = new Car('Ford', 'Mustang', 2013);
 
@@ -69,11 +94,13 @@ var getMyUsername = function() {
  return this.username;
 };
 
-var userName = getMyUsername(); //Fix this
-
+var userName = getMyUsername.call(myUser); //Fix this
+console.log('username',userName);
 //Above you're given an object, and  a function. What will the getUsername function return?
 //Note(no tests)
   //Answer Here
+  //this.username is undifined
+
 
 //In the example above, what is the 'this keyword' bound to when getUsername runs?
 
